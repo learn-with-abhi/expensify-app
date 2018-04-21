@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\aramachandran\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js run test --watch
+  C:\Program Files\nodejs\node.exe C:\Users\aramachandran\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js run build:prod
 
 PATH: 
   C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk1.8.0_121\bin;D:\Abhilash\apache-maven-3.5.3\bin;C:\Program Files\MongoDB\Server\3.6\bin;C:\Program Files\PuTTY\;C:\Users\aramachandran\AppData\Local\Yarn\bin;C:\Users\aramachandran\AppData\Local\Programs\Python\Python36-32\Scripts\;C:\Users\aramachandran\AppData\Local\Programs\Python\Python36-32\;C:\Users\aramachandran\AppData\Roaming\npm;C:\Program Files\Microsoft VS Code\bin;C:\groovy\groovy-2.4.13\bin;C:\gradle\gradle-4.5.1\bin;C:\spring\spring-2.0.0\bin;C:\Program Files\Java\jdk1.8.0_121\bin;D:\Abhilash\apache-maven-3.5.3\bin;C:\Users\aramachandran\AppData\Local\GitHubDesktop\bin
@@ -22,7 +22,8 @@ npm manifest:
     "license": "MIT",
     "scripts": {
       "serve": "live-server public/",
-      "build": "webpack",
+      "build:dev": "webpack",
+      "build:prod": "webpack -p --env production",
       "dev-server": "webpack-dev-server",
       "test": "jest"
     },
@@ -35,7 +36,9 @@ npm manifest:
       "babel-preset-env": "1.5.2",
       "babel-preset-react": "6.24.1",
       "css-loader": "^0.28.11",
+      "extract-text-webpack-plugin": "^3.0.2",
       "jest": "^22.4.3",
+      "jslint": "^0.12.0",
       "live-server": "^1.2.0",
       "moment": "^2.22.1",
       "node-sass": "^4.8.3",
@@ -143,7 +146,7 @@ Lockfile:
       co "^4.6.0"
       json-stable-stringify "^1.0.1"
   
-  ajv@^5.1.0:
+  ajv@^5.0.0, ajv@^5.1.0:
     version "5.5.2"
     resolved "https://registry.yarnpkg.com/ajv/-/ajv-5.5.2.tgz#73b5eeca3fab653e3d3f9422b341ad42205dc965"
     dependencies:
@@ -414,7 +417,7 @@ Lockfile:
     version "1.5.2"
     resolved "https://registry.yarnpkg.com/async/-/async-1.5.2.tgz#ec6a61ae56480c0c3cb241c95618e20892f9672a"
   
-  async@^2.1.4, async@^2.6.0:
+  async@^2.1.4, async@^2.4.1, async@^2.6.0:
     version "2.6.0"
     resolved "https://registry.yarnpkg.com/async/-/async-2.6.0.tgz#61a29abb6fcc026fea77e56d1c6ec53a795951f4"
     dependencies:
@@ -1442,6 +1445,10 @@ Lockfile:
   buffer-indexof@^1.0.0:
     version "1.1.1"
     resolved "https://registry.yarnpkg.com/buffer-indexof/-/buffer-indexof-1.1.1.tgz#52fabcc6a606d1a00302802648ef68f639da268c"
+  
+  buffer-shims@^1.0.0:
+    version "1.0.0"
+    resolved "https://registry.yarnpkg.com/buffer-shims/-/buffer-shims-1.0.0.tgz#9978ce317388c649ad8793028c3477ef044a8b51"
   
   buffer-xor@^1.0.3:
     version "1.0.3"
@@ -2620,7 +2627,7 @@ Lockfile:
     version "1.1.1"
     resolved "https://registry.yarnpkg.com/exit-hook/-/exit-hook-1.1.1.tgz#f05ca233b48c05d54fff07765df8507e95c02ff8"
   
-  exit@^0.1.2:
+  exit@^0.1.2, exit@~0.1.2:
     version "0.1.2"
     resolved "https://registry.yarnpkg.com/exit/-/exit-0.1.2.tgz#0632638f8d877cc82107d30a0fff1a17cba1cd0c"
   
@@ -2743,6 +2750,15 @@ Lockfile:
       regex-not "^1.0.0"
       snapdragon "^0.8.1"
       to-regex "^3.0.1"
+  
+  extract-text-webpack-plugin@^3.0.2:
+    version "3.0.2"
+    resolved "https://registry.yarnpkg.com/extract-text-webpack-plugin/-/extract-text-webpack-plugin-3.0.2.tgz#5f043eaa02f9750a9258b78c0a6e0dc1408fb2f7"
+    dependencies:
+      async "^2.4.1"
+      loader-utils "^1.1.0"
+      schema-utils "^0.3.0"
+      webpack-sources "^1.0.1"
   
   extsprintf@1.3.0:
     version "1.3.0"
@@ -3128,7 +3144,7 @@ Lockfile:
       once "^1.3.0"
       path-is-absolute "^1.0.0"
   
-  glob@^7.0.0, glob@^7.0.3, glob@^7.0.5, glob@^7.1.1, glob@^7.1.2, glob@~7.1.1:
+  glob@^7.0.0, glob@^7.0.3, glob@^7.0.5, glob@^7.1.1, glob@^7.1.2, glob@~7.1.1, glob@~7.1.2:
     version "7.1.2"
     resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.2.tgz#c19c9df9a028702d678612384a6552404c636d15"
     dependencies:
@@ -4463,6 +4479,15 @@ Lockfile:
     version "0.5.0"
     resolved "https://registry.yarnpkg.com/jsesc/-/jsesc-0.5.0.tgz#e7dee66e35d6fc16f710fe91d5cf69f70f08911d"
   
+  jslint@^0.12.0:
+    version "0.12.0"
+    resolved "https://registry.yarnpkg.com/jslint/-/jslint-0.12.0.tgz#39780c8575cd2de7a5a6f4836a9b00326ffd1948"
+    dependencies:
+      exit "~0.1.2"
+      glob "~7.1.2"
+      nopt "~3.0.1"
+      readable-stream "~2.1.5"
+  
   json-buffer@3.0.0:
     version "3.0.0"
     resolved "https://registry.yarnpkg.com/json-buffer/-/json-buffer-3.0.0.tgz#5b1f397afc75d677bde8bcfc0e47e1f9a3d9a898"
@@ -5248,7 +5273,7 @@ Lockfile:
       chalk "~0.4.0"
       underscore "~1.6.0"
   
-  "nopt@2 || 3":
+  "nopt@2 || 3", nopt@~3.0.1:
     version "3.0.6"
     resolved "https://registry.yarnpkg.com/nopt/-/nopt-3.0.6.tgz#c6465dbf08abcd4db359317f79ac68a646b28ff9"
     dependencies:
@@ -6050,6 +6075,10 @@ Lockfile:
     version "2.0.0"
     resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-2.0.0.tgz#a37d732f4271b4ab1ad070d35508e8290788ffaa"
   
+  process-nextick-args@~1.0.6:
+    version "1.0.7"
+    resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-1.0.7.tgz#150e20b756590ad3f91093f25a4f2ad8bff30ba3"
+  
   process@^0.11.10:
     version "0.11.10"
     resolved "https://registry.yarnpkg.com/process/-/process-0.11.10.tgz#7332300e840161bda3e69a1d1d91a7d4bc16f182"
@@ -6412,6 +6441,18 @@ Lockfile:
       process-nextick-args "~2.0.0"
       safe-buffer "~5.1.1"
       string_decoder "~1.1.1"
+      util-deprecate "~1.0.1"
+  
+  readable-stream@~2.1.5:
+    version "2.1.5"
+    resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.1.5.tgz#66fa8b720e1438b364681f2ad1a63c618448c9d0"
+    dependencies:
+      buffer-shims "^1.0.0"
+      core-util-is "~1.0.0"
+      inherits "~2.0.1"
+      isarray "~1.0.0"
+      process-nextick-args "~1.0.6"
+      string_decoder "~0.10.x"
       util-deprecate "~1.0.1"
   
   readdirp@^2.0.0:
@@ -6830,6 +6871,12 @@ Lockfile:
   sax@^1.2.4, sax@~1.2.1:
     version "1.2.4"
     resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
+  
+  schema-utils@^0.3.0:
+    version "0.3.0"
+    resolved "https://registry.yarnpkg.com/schema-utils/-/schema-utils-0.3.0.tgz#f5877222ce3e931edae039f17eb3716e7137f8cf"
+    dependencies:
+      ajv "^5.0.0"
   
   schema-utils@^0.4.2, schema-utils@^0.4.5:
     version "0.4.5"
@@ -7307,6 +7354,10 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/string_decoder/-/string_decoder-1.1.1.tgz#9cf1611ba62685d7030ae9e4ba34149c3af03fc8"
     dependencies:
       safe-buffer "~5.1.0"
+  
+  string_decoder@~0.10.x:
+    version "0.10.31"
+    resolved "https://registry.yarnpkg.com/string_decoder/-/string_decoder-0.10.31.tgz#62e203bc41766c6c28c9fc84301dab1c5310fa94"
   
   stringstream@~0.0.4, stringstream@~0.0.5:
     version "0.0.5"
@@ -8319,7 +8370,7 @@ Trace:
   Error: Command failed.
   Exit code: 1
   Command: C:\WINDOWS\system32\cmd.exe
-  Arguments: /d /s /c jest --watch
+  Arguments: /d /s /c webpack -p --env production
   Directory: D:\react-course-projects\Expenser
   Output:
   
