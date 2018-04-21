@@ -1,4 +1,4 @@
-export const setFilters = (filter) => ({
+export const setFilters = (filter = '') => ({
     type: 'SET_FILTERS',
     filter
 });
